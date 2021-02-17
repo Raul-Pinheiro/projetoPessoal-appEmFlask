@@ -1,8 +1,9 @@
-from  app.app import *
+from  app.setup import *
 
 
 @app.route("/")
 def home():
-    """ Pagina principal do portal"""
-    title='Home' 
+    """ Pagina principal do portal"""    
+    title='Home'   
     return render_template('home.html', title=title)
+

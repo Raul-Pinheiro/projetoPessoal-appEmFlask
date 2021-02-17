@@ -1,0 +1,40 @@
+/*Design Tabela */
+
+table{
+    margin:50px auto;
+    width:80%;
+    border-collapse:collapse;
+}
+.thead-line{
+    background-color: rgb(22, 22, 22);    
+    height: 50px;
+    
+}
+.tbody-line{
+    background-color: rgba(233, 233, 233,0.8); 
+    
+ 
+}
+
+
+.th-title{    
+    color:rgb(231, 233, 232);
+    font-size: 18px;
+    font-weight: lighter;
+    
+    text-align: left;
+    padding:8px;
+    margin:4px;
+    text-overflow: ellipsis;  
+          
+}
+
+.td-content{
+    color:rgb(39, 36, 36);
+    font-size: 18px;
+    font-weight: lighter;
+    
+    text-align: left;
+    text-overflow: ellipsis;   
+        
+}

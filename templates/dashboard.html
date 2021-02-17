@@ -1,5 +1,36 @@
 {% extends 'bases/modelTemplate.html' %}
 {% block content %}
 {% include 'partials/header.html' %}
-    <h1>Dashoboard de sucesso!</h1>
+
+    
+        <table>
+            <thead class="thead-line">
+                <tr>
+                    <th class="th-title">Usuario</th>
+                    <th class="th-title">Senha</th>
+                    <th class="th-title"></th>
+                    <th class="th-title"></th>
+                </tr>
+            </thead>
+            <tbody class="tbody-line">
+            {% for user in usuarios %}
+                <tr >                    
+                    <td class="td-content">{{user.user}}</td>
+                    <td class="td-content">{{user.pw}}</td>
+                    <td class="td-content">
+                        <a href="/delUser/{{user.id}}">Exluir</a>
+                    </td>
+                    <td class="td-content">
+                        <a href="#">Editar</a>
+                    </td>
+                </tr>
+            </tbody>
+            {% endfor %}
+        </table>
+                
+            
+        
+     
+ 
+    
 {% endblock %}

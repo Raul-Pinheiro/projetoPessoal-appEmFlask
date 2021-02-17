@@ -3,16 +3,20 @@
 {% block content %}
 {% include 'partials/header.html' %}
 
-    <div>
-        <form action="/login" method="POST">
+  
+        <form action="/cadastro" method="POST" class="form-container">
+            <label>
+                Usuário:
+                <input type="text" name="home_user" placeholder="Digite um usuário"/>
+            </label>
 
-            <input type="text" name="home_user" />
-
-            <input type="text" name="home_password">
-
-            <input type="submit" value="Entrar">
+            <label>
+                Senha:
+                <input type="text" name="home_password" placeholder="Digite uma senha" />
+            </label>
+            <input type="submit" value="Registrar" >
 
         </form>
-    </div>
+
 
 {% endblock %}

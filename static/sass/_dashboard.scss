@@ -1,0 +1,22 @@
+.dashboard-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width:100%;
+}
+
+.dashboard-div{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 30%;
+    height: 40px;
+    background-color: rgb(18, 135, 139);
+    margin:20px ;
+}
+
+.dashboard-p{
+    font-size: 20px;
+    color:white;
+    text-transform: uppercase;
+}
