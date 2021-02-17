@@ -4,9 +4,15 @@
 {% include 'partials/header.html' %}
 
     <div>
-        <div>
-            
-        </div>
+        <form action="/login" method="POST">
+
+            <input type="text" name="home_user" />
+
+            <input type="text" name="home_password">
+
+            <input type="submit" value="Entrar">
+
+        </form>
     </div>
 
 {% endblock %}
