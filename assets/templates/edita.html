@@ -1,0 +1,23 @@
+{% extends 'bases/modelTemplate.html' %}
+
+{% block content %}
+{% include 'partials/header.html' %}
+
+        <h1 style="text-align: center;">Editando Usuários</h1>
+        <form action="/editaUser" method="POST" class="form-container">
+            <input type="hidden" name="home_id_edit"value="{{values[0]}}"/>
+            <label>
+                Usuário:
+                <input type="text" name="home_user_edit" placeholder="Digite um usuário" value="{{values[1]}}"/>
+            </label>
+
+            <label>
+                Senha:
+                <input type="text" name="home_password_edit" placeholder="Digite uma senha" value="{{values[2]}}" />
+            </label>
+            <input type="submit" value="Atualizar" >
+
+        </form>
+
+
+{% endblock %}
