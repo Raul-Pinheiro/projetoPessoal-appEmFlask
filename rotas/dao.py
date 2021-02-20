@@ -13,7 +13,7 @@ def cadastro():
         if user =='' or pw=='':
             return redirect('/')
         else:
-            db_user =User(db.db_name)
+            db_user =User(db_name)
             db_user.createTable()    
             db_user.insertUser(user,pw)  
 
@@ -28,14 +28,14 @@ def views():
     """ Dashboard do portal """
 
     title='Views'
-    db_user = User(db.db_name)       
+    db_user = User(db_name)       
     
     return render_template('dashboard.html', title=title, usuarios=db_user.selectUsers())
 
 
 @app.route("/delUser/<int:id_user>")
 def delUser(id_user):    
-    db_user = User(db.db_name)
+    db_user = User(db_name)
     db_user.deleteUsers(id_user) 
      
     return redirect('/views')
@@ -48,7 +48,7 @@ def editaUser():
         user= request.form['home_user_edit']
         pw=request.form['home_password_edit']
 
-        db_user = User(db.db_name)
+        db_user = User(db_name)
         db_user.updateUsers(id,user,pw)
 
     return redirect('/views')

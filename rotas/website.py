@@ -11,7 +11,7 @@ def home():
 
 def edita(id_user):
 
-    db_user = User(db.db_name)
+    db_user = User(db_name)
     values=db_user.pegaUserPorID(id_user)
     title='Edita Usuário'   
     print(id_user)

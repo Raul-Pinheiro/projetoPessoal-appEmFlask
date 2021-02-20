@@ -6,12 +6,14 @@ from database.models import *
 #Application config
 app = Flask(__name__,template_folder='../assets/templates',static_folder='../assets/static')
 app.secret_key='segredo'
+app.config['DATABASE_URI']= 'postgres://postgres:iluvatar96@localhost:5432/bancoDados'
+db_name = 'bancoDados'
 
-db = Database('dao.db')
+# PSYCOPG2_TESTDB
+# PSYCOPG2_TESTDB_HOST
+# PSYCOPG2_TESTDB_PORT
+# PSYCOPG2_TESTDB_USER
 
-# usuarios= User(db.db_name)
-# usuarios.createTable()  
-# app.database = 'db_flaskApp.db'
 
 
 
