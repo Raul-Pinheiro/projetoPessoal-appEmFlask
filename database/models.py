@@ -1,5 +1,4 @@
-import sqlite3
-import os
+import pg8000 
 
 class ListaUser:
     def __init__(self,id,user,pw):
@@ -7,40 +6,32 @@ class ListaUser:
         self.user = user
         self.pw = pw
 
-class Database():
-    def __init__(self,db_name):     
-        self.db_name = db_name     
-        self.con = sqlite3.connect(self.db_name)
+class ConnectUserTable():
+    def __init__(self):   
+        self.con = pg8000.connect("postgres",host="localhost",database="bancoDados",\
+            port=5432,password="iluvatar96",unix_sock=None,ssl_context=None,timeout=None,\
+            tcp_keepalive=True,application_name=None,replication=None)
         self.cur = self.con.cursor()
+
+    def createTable(self):        
+        self.cur.execute("CREATE TABLE IF NOT EXISTS tb_clientes (id_user SERIAL PRIMARY KEY,\
+            usuario VARCHAR(15) NOT NULL, senha VARCHAR(15) NOT NULL)")
+        self.con.commit()
+        
     
-
-
-
-class User(Database):     
-    def __init__(self,db_name):
-        Database.__init__(self,db_name)
-        
-      
-    def createTable(self):
-        
-        self.cur.execute(
-            'CREATE TABLE IF NOT EXISTS tb_usuario (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,\
-            user VARCHAR(15) NOT NULL,\
-            password VARCHAR(100) NOT NULL)')        
-        
     def insertUser(self,user,pw):
         self.user = user
-        self.pw =pw 
-        
-        self.cur.execute("INSERT INTO 'tb_usuario'\
-            (user,password) VALUES ('{}','{}')".format(self.user,self.pw))
+        self.pw = pw
+        self.cur.execute("INSERT INTO tb_clientes (usuario,senha) VALUES ('{}','{}')".format(self.user,self.pw)) 
         self.con.commit()
         self.cur.close()
         self.con.close()
-             
+
+ 
+                
     def selectUsers(self):
             
-        self.cur.execute('SELECT * FROM tb_usuario')
+        self.cur.execute('SELECT * FROM tb_clientes')
 
         usuarios =[]
         for row in self.cur.fetchall():
@@ -50,26 +41,25 @@ class User(Database):
         return usuarios
 
     def deleteUsers(self,id):       
-        
-        self.cur.execute('DELETE FROM tb_usuario WHERE id={}'.format(id))
+        self.id =id 
+        self.cur.execute("DELETE FROM tb_clientes WHERE id_user={}".format(self.id))
         self.con.commit()
-        
+
     def updateUsers(self,id,user,pw):
         self.id=id
         self.user=user
         self.pw=pw
         
         self.cur.execute("""
-        UPDATE 'tb_usuario' 
-        SET user =?, password =?
-        WHERE id = ?
+        UPDATE 'tb_clientes' 
+        SET usuario =?, senha =?
+        WHERE id_user = ?
         """,(self.user,self.pw,self.id))
         self.con.commit()
     
-
     def pegaUserPorID(self,id):
         self.id = id
-        self.cur.execute('SELECT * FROM tb_usuario WHERE id = {}'.format(self.id))
+        self.cur.execute('SELECT * FROM tb_clientes WHERE id_user = {}'.format(self.id))
         usuario = []
 
         for item in self.cur.fetchone():
@@ -77,5 +67,5 @@ class User(Database):
 
         return usuario
 
-        
-        
+
+

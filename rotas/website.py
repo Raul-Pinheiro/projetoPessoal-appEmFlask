@@ -1,4 +1,5 @@
 from  configs.setup import *
+from database.models import *
 
 
 @app.route("/")
@@ -11,7 +12,7 @@ def home():
 
 def edita(id_user):
 
-    db_user = User(db_name)
+    db_user = ConnectUserTable()
     values=db_user.pegaUserPorID(id_user)
     title='Edita Usuário'   
     print(id_user)
